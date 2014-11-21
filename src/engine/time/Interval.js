@@ -28,13 +28,21 @@
       
       Interval.extend(EventSet);
       
-      Interval.prototype.start = function() {
+      Interval.prototype.start = function($$nonForced) {
          if(!this.$$clock) {
             
-            this.fire('start', Date.now());
+            if(!$$nonForced) {
+               this.$$iterations = 0;  
+            }
             
+            this.fire('start', Date.now());
             this.$$clock = Window.setInterval((this.tick).bind(this), this.$$speed);
          }
+      };
+      
+      Interval.prototype.resume = function () {
+         this.start(true);
+         this.fire('resume', this.$$iterations, Date.now());
       };
       
       Interval.prototype.tick = function () {
@@ -49,12 +57,10 @@
       
       Interval.prototype.stop = function () {
          if(this.$$clock) {
-            this.fire('stop', Date.now());
+            this.fire('stop', this.$$iterations, Date.now());
             Window.clearInterval(this.$$clock);
          }
       };
-      
-      Interval.extend(EventSet);
       
       return Interval; 
    });
