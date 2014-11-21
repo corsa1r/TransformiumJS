@@ -18,7 +18,7 @@
    define(deps, function (Class, Window, EventSet) {
        
       var Interval = new Class('Interval', function(speed, iterationsBeforeDie) {
-         this.parent.constructor.call(this);
+         Interval.super.constructor.call(this);
          
          this.$$speed = Number(speed);
          this.$$clock = null;
@@ -48,7 +48,7 @@
       Interval.prototype.tick = function () {
          this.$$iterations++;
          
-         this.fire('tick', this.$$iteration, Date.now());
+         this.fire('tick', this.$$iterations, Date.now());
          
          if(this.$$iterations >= this.$$iterationsBeforeDie) {
             this.stop();
@@ -59,9 +59,14 @@
          if(this.$$clock) {
             this.fire('stop', this.$$iterations, Date.now());
             Window.clearInterval(this.$$clock);
+            this.$$clock = null;
          }
+      };
+      
+      Interval.prototype.isRunning = function() {
+         return Boolean(this.$$clock);
       };
       
       return Interval; 
    });
-});
+})();

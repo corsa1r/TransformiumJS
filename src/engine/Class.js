@@ -20,14 +20,12 @@
         };
 
         Class.prototype.extend = function(ancestor) {
-            var Prototype = function () {
-                this.parent = ancestor.prototype;
-            };
-            
-            Prototype.prototype = ancestor.prototype;
-            
-            this.prototype = new Prototype();
+            function TransformiumExtend() {
+            }
+            TransformiumExtend.prototype = ancestor.prototype;
+            this.prototype = new TransformiumExtend();
             this.prototype.constructor = this;
+            this.super = ancestor.prototype;
         };
 
         Class.prototype.getName = function() {

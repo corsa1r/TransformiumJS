@@ -36,6 +36,10 @@
             return this;
         };
         
+        Container.prototype.has = function(what) {
+            return Boolean(this.get(what));
+        };
+        
         Container.prototype.indexOf = function (what) {
             if(typeof what === 'string' || what instanceof String) {
                 return this.$$names.indexOf(what);
@@ -52,6 +56,18 @@
             }
             
             return this;
+        };
+
+        Container.prototype.eachByName = function(name) {
+            var all = new Container();
+
+            this.each(function(item, itemName) {
+                if(itemName === name) {
+                    all.add(item, itemName);
+                }
+            });
+
+            return all;
         };
         
         Container.prototype.len = function() {

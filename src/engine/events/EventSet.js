@@ -17,7 +17,7 @@
 	define(deps, function (Class, Container) {
 		
 		var EventSet = new Class('EventSet', function() {
-			this.parent.constructor.call(this);
+			EventSet.super.constructor.call(this);
 		});
 
 		EventSet.extend(Container);
