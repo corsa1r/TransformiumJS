@@ -11,7 +11,7 @@
     define(deps, function() {
         
         var Class = function(name, constructor) {
-            constructor._name = name;
+            constructor.$$name = name;
             constructor.extend = this.extend;
             constructor.getName = this.getName;
             return constructor;
@@ -29,7 +29,7 @@
         };
 
         Class.prototype.getName = function() {
-            return this._name;
+            return this.$$name;
         };
 
         return Class;
