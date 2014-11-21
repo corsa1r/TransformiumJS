@@ -8,7 +8,9 @@
     
     var deps = [];
     
-    define(deps, function() {
+    deps.push('src/ecma/DateNow');
+    
+    define(deps, function(DateNow) {
         
         var Class = function(name, constructor) {
             constructor.$$name = name;
