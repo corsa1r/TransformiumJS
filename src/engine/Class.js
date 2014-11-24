@@ -31,6 +31,20 @@
         Class.prototype.getName = function() {
             return this.$$name;
         };
+        
+        Class.prototype.serialize = function() {
+            var Serialization = {
+                $$className : this.constructor.getName(),
+                $$fields : this,
+                $$super : this.constructor.super ? this.constructor.super.constructor.getName() : null
+            };
+            
+            return JSON.stringify(Serialization);
+        };
+
+        Class.prototype.deserialize = function(serealization) {
+            throw new Error('Method Class.deserialize was not implemented yet !');
+        };
 
         return Class;
     });

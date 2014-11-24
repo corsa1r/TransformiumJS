@@ -1,6 +1,7 @@
 /**
  * @file implements Container Class
  * @author CORSAIR <vladimir.corsair@gmail.com> 
+ * @version 3.1.2a
  */
  
  ;(function () {
@@ -9,8 +10,13 @@
     
     deps.push('src/engine/Class');
     
-    define(deps, function (Class, ContainerItem) {
+    define(deps, function (Class) {
         
+        /**
+         * Container constructor
+         * $$items store your content
+         * $$names store names of items in your container
+         */
         var Container = new Class('Container', function () {
             this.$$items = [];
             this.$$names = [];
@@ -72,6 +78,14 @@
         
         Container.prototype.len = function() {
             return this.$$names.length;
+        };
+        
+        Container.prototype.last = function() {
+            return this.$$items[this.len() - 1];
+        };
+        
+        Container.prototype.first = function() {
+            return this.$$items[0];
         };
         
         return Container;

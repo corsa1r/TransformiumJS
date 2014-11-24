@@ -3,16 +3,19 @@
     var deps = [];
     
     deps.push('src/engine/Class');
-    deps.push('src/engine/events/EventSet');
     
-    define(deps, function(Class, EventSet) {
+    define(deps, function(Class) {
         
-        var Output = new Class('Output', function(which, state) {
+        var Output = new Class('Output', function(which, state, type) {
             this.which = which;
             this.state = state;
-            
             this.time = Date.now();
+            this.type = type;
         });
+        
+        Output.prototype.otype = function(newType) {
+            return new Output(this.which, this.state, newType);
+        };
         
         Output.EVENT_NAME = 'output';
         

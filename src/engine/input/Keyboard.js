@@ -5,10 +5,10 @@
     deps.push('src/engine/Class');
     deps.push('src/engine/events/EventSet');
     deps.push('src/engine/globals/Window');
-    deps.push('src/engine/storage/Container');
     deps.push('src/engine/input/Output');
+    deps.push('src/engine/input/InputSwitch');
     
-    define(deps, function(Class, EventSet, Window, Container, Output) {
+    define(deps, function(Class, EventSet, Window, Output, InputSwitch) {
         
         var Keyboard = new Class('Keyboard', function() {
             Keyboard.super.constructor.call(this);
@@ -16,14 +16,15 @@
             Window.addEventListener('keydown', this.input.bind(this, true), false);
             Window.addEventListener('keyup', this.input.bind(this, false), false);
             
-            this.outputs = new Container();
+            this.is = new InputSwitch();
         });
         
         Keyboard.extend(EventSet);
         
-        Keyboard.prototype.input = function(state, e) {
-            var which = Keyboard.$$map[e.keyCode];
-            this.fire(Output.EVENT_NAME, new Output(state, which));
+        Keyboard.prototype.input = function(state, event) {
+            var which = Keyboard.$$map[event.keyCode];
+            var output = new Output(which, state, 'keyboard');
+            this.is.process(output, false);
         };
         
         Keyboard.$$map = {

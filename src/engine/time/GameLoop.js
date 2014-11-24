@@ -1,6 +1,7 @@
 /**
  * @file implements GameLoop class
  * @author CORSAIR <vladimir.corsair@gmail.com>
+ * 
  * @version 21.11.2014
  */
  
