@@ -19,45 +19,32 @@
     deps.push('src/engine/gameobject/GameObject');
     deps.push('src/engine/gameobject/components/Center');
     deps.push('src/engine/storage/ComponentsContainer');
+    deps.push('src/engine/render/CanvasRenderer');
+    deps.push('src/engine/storage/Container');
     
-    define(deps, function (Class, GameLoop, Keyboard, Screen, Mouse, AdvancedContainer, GameObject, Center, ComponentsContainer) {
-        var keyboard = new Keyboard();
-        
-        keyboard.is.on('output', function(event) {
-            //console.log(event.type, event);
-        });
-        
+    define(deps, function (Class, GameLoop, Keyboard, Screen, Mouse, AdvancedContainer, GameObject, Center, ComponentsContainer, CanvasRenderer, Container) {
         var canvas = document.getElementById('canvas');
         var screen = new Screen(canvas);
-        var mouse = new Mouse(screen);
-        
-        mouse.is.on('output', function(event) {
-            //console.log(event.type, event);
-        });
-        
-        var ac = new AdvancedContainer();
-        
-        ac.on.add.add([-1, -2, -3], 'init');
-        ac.on.remove.add([1, 2, 3], 'remove');
-        
-        var a = {
-            x: 10,
-            y: 100,
-            init: function() {
-                console.warn('init', arguments);
-            },
-            remove : function() {
-                console.log('remove', arguments);
-            }
-        };
-        
-        //ac.add(a, 'a');
-        //ac.remove('a');
+        var renderer = new CanvasRenderer(screen);
+        var gameloop = new GameLoop();
+        var gameObjects = new Container();
         
         var cube = new GameObject();
         
-        cube.components.attach(new Center());
+        cube.draw = function(screen, camera) {
+            screen.context.save();
+            screen.context.beginPath();
+            screen.context.fillStyle = 'black';
+            screen.context.fillRect(this.position.x - camera.position.x, this.position.y - camera.position.y, this.size.x, this.size.y);
+            screen.context.restore();
+        };
         
-        console.log(cube.components.get('Center').get())
+        gameObjects.add(cube);
+        
+        gameloop.on('draw', function() {
+            renderer.draw(gameObjects);
+        });
+        
+        gameloop.start();
     });
 })();
