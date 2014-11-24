@@ -22,7 +22,7 @@
             this.zindex   = GameObject.$$defaults.zindex;
             
             this.components = new ComponentsContainer();
-            this.components.on.add.add([this] , 'init');
+            this.components.on.add.add([this] , GameObject.$$defaults.initMethod);
             this.components.on.add.add([]     , 'run');
         });
         

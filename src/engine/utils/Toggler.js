@@ -1,3 +1,16 @@
+/**
+ * @file implements Toggler Class
+ * @description 
+ *  This class gives you simple implementation wich provides you enable/disable mechanism
+ * 
+ * @see
+ *  var Component = new Class('Comonent', function() {
+ *      Toggler.set(this); //Now, the Component class has an enable, disable, toggle, isEnabled, isDisabled methods in it's own prototype.
+ *  });
+ * 
+ * @author CORSAIR <vladimir.corsair@gmail.com>
+ * @version 1.0.0
+ **/
 ;(function() {
     
     var deps = [];
@@ -34,5 +47,4 @@
         
         return new Toggler();
     });
-    
 })();
