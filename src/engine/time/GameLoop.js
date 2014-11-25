@@ -39,11 +39,12 @@
         
         GameLoop.prototype.loop = function(iterations, now) {
             var delta = now - this.$$lastTime;
+            var that = this;
             
-            this.each(ReverseCallback((function(eventName) {
-                this.fire(eventName, delta, iterations, now);
+            this.each(function(listener, eventName) {
+                that.fire(eventName, delta, iterations, now);
                 return true;
-            }).bind(this)));
+            });
             
             this.$$lastTime = now;
             

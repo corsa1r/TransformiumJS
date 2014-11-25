@@ -29,30 +29,31 @@
       Interval.extend(EventSet);
       
       Interval.prototype.start = function($$nonForced) {
-         if(!this.$$clock) {
+         var that = this;
+         
+         if(!that.$$clock) {
             
             if(!$$nonForced) {
-               this.$$iterations = 0;  
+               that.$$iterations = 0;  
             }
             
-            this.fire('start', Date.now());
-            this.$$clock = Window.setInterval((this.tick).bind(this), this.$$speed);
+            that.fire('start', Date.now());
+            
+            that.$$clock = Window.setInterval(function() {
+               that.$$iterations++;
+               
+               that.fire('tick', that.$$iterations, Date.now());
+               
+               if(that.$$iterations >= that.$$iterationsBeforeDie) {
+                  that.stop();
+               }
+            }, that.$$speed);
          }
       };
       
       Interval.prototype.resume = function () {
          this.start(true);
          this.fire('resume', this.$$iterations, Date.now());
-      };
-      
-      Interval.prototype.tick = function () {
-         this.$$iterations++;
-         
-         this.fire('tick', this.$$iterations, Date.now());
-         
-         if(this.$$iterations >= this.$$iterationsBeforeDie) {
-            this.stop();
-         }
       };
       
       Interval.prototype.stop = function () {

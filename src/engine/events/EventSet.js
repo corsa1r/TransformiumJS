@@ -35,11 +35,12 @@
 
 			return this;
 		};
+		
+		EventSet.prototype.fire = function () {
+			var $$args = Array.prototype.slice.call(arguments, 0);
+			var $$name = $$args.shift();
 
-		EventSet.prototype.fire = function (name/*, arguments */) {
-			var $$args = Array.prototype.slice.call(arguments, 1);
-
-			this.eachByName(name).each(function(callback) {
+			this.eachByName($$name).each(function(callback) {
 				callback.apply(callback, $$args);
 			});
 			

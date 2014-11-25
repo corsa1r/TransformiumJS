@@ -35,6 +35,12 @@
         var keyboard = new Keyboard();
         var mouse = new Mouse(screen);
         
+        gameloop.start();
+        
+        gameloop.on('update', function() {
+            console.log('update');
+        });
+        
         mouse.is.on('output', function(event) {
             console.log(event);
         });
