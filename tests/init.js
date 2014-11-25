@@ -3,7 +3,6 @@
  */
 ;(function() {
     
-    
     require.config({
         baseUrl: './'
     });
@@ -21,30 +20,23 @@
     deps.push('src/engine/storage/ComponentsContainer');
     deps.push('src/engine/render/CanvasRenderer');
     deps.push('src/engine/storage/Container');
+    deps.push('src/engine/input/Touch');
+    deps.push('src/engine/physics/Vector');
     
-    define(deps, function (Class, GameLoop, Keyboard, Screen, Mouse, AdvancedContainer, GameObject, Center, ComponentsContainer, CanvasRenderer, Container) {
+    define(deps, function (Class, GameLoop, Keyboard, Screen, Mouse, AdvancedContainer, GameObject, Center, ComponentsContainer, CanvasRenderer, Container, Touch, Vector) {
+        
         var canvas = document.getElementById('canvas');
         var screen = new Screen(canvas);
+        screen.setCanvasSize(500, 500);
         var renderer = new CanvasRenderer(screen);
         var gameloop = new GameLoop();
         var gameObjects = new Container();
+        var touch = new Touch(screen);
+        var keyboard = new Keyboard();
+        var mouse = new Mouse(screen);
         
-        var cube = new GameObject();
-        
-        cube.draw = function(screen, camera) {
-            screen.context.save();
-            screen.context.beginPath();
-            screen.context.fillStyle = 'black';
-            screen.context.fillRect(this.position.x - camera.position.x, this.position.y - camera.position.y, this.size.x, this.size.y);
-            screen.context.restore();
-        };
-        
-        gameObjects.add(cube);
-        
-        gameloop.on('draw', function() {
-            renderer.draw(gameObjects);
+        mouse.is.on('output', function(event) {
+            console.log(event);
         });
-        
-        gameloop.start();
     });
 })();

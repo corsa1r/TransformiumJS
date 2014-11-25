@@ -15,8 +15,9 @@
     deps.push('src/engine/globals/Window');
     deps.push('src/engine/input/Output');
     deps.push('src/engine/physics/Vector');
+    deps.push('src/engine/utils/Aspect');
     
-    define(deps, function(Class, InputSwitch, EventSet, Window, Output, Vector) {
+    define(deps, function(Class, InputSwitch, EventSet, Window, Output, Vector, Aspect) {
         
         var EVENT_BTN               = 'button';
         var EVENT_MOVE              = 'move';
@@ -43,7 +44,10 @@
         
         Mouse.prototype.input = function(type, state, event) {
             var output = new Output(Mouse.$$map[event.which], state, type);
-            output.position = new Vector(event.clientX, event.clientY);
+            
+            Aspect.wrap(output, {
+                position: new Vector(event.clientX, event.clientY)
+            });
             
             output = this.screen.translate(output);
             
@@ -64,9 +68,13 @@
                 
                 if(this.$$history.length === 2 && this.$$lastBtn === output.which) {
                     if(this.$$history[1] - this.$$history[0] < EVENT_DBCLICK_INTERVAL) {
-                        var dbclickOutput = output.otype(EVENT_DBCLICK);
-                        dbclickOutput.position = output.position.clone();
-                        this.is.process(dbclickOutput, true);
+                        
+                        Aspect.wrap(output, {
+                            type: EVENT_DBCLICK,
+                            position: output.position.clone()
+                        });
+                        
+                        this.is.process(output, true);
                     }
                 }
             }

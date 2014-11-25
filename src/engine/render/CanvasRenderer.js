@@ -17,12 +17,14 @@
         
         CanvasRenderer.extend(Renderer);
         
-        CanvasRenderer.prototype.draw = function(gameObjects) {
+        CanvasRenderer.prototype.draw = function(gameObjects, dontClearScreen) {
             if(this.isDisabled()) {
                 return false;
             }
             
-            this.$$screen.context.clearRect(0, 0, this.$$screen.canvas.width, this.$$screen.canvas.height);
+            if(dontClearScreen !== false) {
+                this.$$screen.context.clearRect(0, 0, this.$$screen.canvas.width, this.$$screen.canvas.height);
+            }
             
             gameObjects.each((function(gameObject) {
                 gameObject.draw(this.$$screen, this.$$camera);
