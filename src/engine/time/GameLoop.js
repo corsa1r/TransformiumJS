@@ -12,7 +12,7 @@
     deps.push('src/engine/Class');
     deps.push('src/engine/events/EventSet');
     deps.push('src/engine/time/Interval');
-    deps.push('src/engine/utils/ReverseCallback')
+    deps.push('src/engine/utils/ReverseCallback');
     
     define(deps, function(Class, EventSet, Interval, ReverseCallback) {
         

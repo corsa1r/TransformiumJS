@@ -35,10 +35,59 @@
         var keyboard = new Keyboard();
         var mouse = new Mouse(screen);
         
+        var Cube = new Class('Cube', function() {
+            this.position = new Vector(0, 400);
+            this.velocity = new Vector(0.1, 0.1);
+            this.c = [0, 0, 0];
+            this.cc = 1;
+            
+            this.r = new Vector(1, 1);
+            this.v = 0.002;
+            this.ra = 68;
+        });
+        
+        Cube.extend(GameObject);
+        
+        Cube.prototype.update = function() {
+            this.c[0] += this.cc;
+            this.c[1] += this.cc;
+            this.c[2] += this.cc;
+            
+            if(this.c[0] > 254) {
+                this.cc *= -1;
+            }
+            
+            if(this.c[0] < 1) {
+                this.cc *= -1;
+            }
+            
+            this.position.x += Math.sin(this.r.x) * 7;
+            this.r.x += this.v;
+            
+            this.position.y += Math.cos(this.r.y) * 7;
+            this.r.y += this.v;
+            
+            this.v += 0.001;
+            this.ra += Math.sin(this.r.x) * 0.2;
+        };
+        
+        Cube.prototype.draw = function(context) {
+            context.beginPath();
+            context.strokeStyle = 'rgb(' + this.c.toString() + ')';
+            context.arc(this.position.x, this.position.y, this.ra, Math.PI * 2, false);
+            context.stroke();
+        };
+        
         gameloop.start();
         
-        gameloop.on('update', function() {
-            console.log('update');
+        gameObjects.add(new Cube());
+        
+        gameloop.on('update', function(delta) {
+            //screen.context.clearRect(0, 0, 500, 500);
+            gameObjects.each(function(gameObject) {
+                gameObject.update(delta);
+                gameObject.draw(screen.context);
+            });
         });
         
         mouse.is.on('output', function(event) {
