@@ -21,11 +21,13 @@
         });
         
         Aspect.prototype.wrap = function(target, fields) {
-            Each(fields, (function(key, value) {
-                if(key.toString().substr(0, this.$$privatePrefix.length) !== this.$$privatePrefix) {
+            var that = this;
+            
+            Each(fields, function(key, value) {
+                if(key.toString().substr(0, that.$$privatePrefix.length) !== that.$$privatePrefix) {
                     target[key] = value;
                 }
-            }).bind(this));
+            });
         };
         
         return new Aspect();

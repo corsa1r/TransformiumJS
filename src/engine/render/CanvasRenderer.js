@@ -18,20 +18,22 @@
         CanvasRenderer.extend(Renderer);
         
         CanvasRenderer.prototype.draw = function(gameObjects, dontClearScreen) {
-            if(this.isDisabled()) {
+            var that = this;
+            
+            if(that.isDisabled()) {
                 return false;
             }
             
             if(dontClearScreen !== false) {
-                this.$$screen.context.clearRect(0, 0, this.$$screen.canvas.width, this.$$screen.canvas.height);
+                that.$$screen.context.clearRect(0, 0, that.$$screen.canvas.width, that.$$screen.canvas.height);
             }
             
-            gameObjects.each((function(gameObject) {
-                gameObject.draw(this.$$screen, this.$$camera);
-                gameObject.components.each((function(component) {
-                    component.draw(this.$$screen, this.$$camera);
-                }).bind(this));
-            }).bind(this));
+            gameObjects.each(function(gameObject) {
+                gameObject.draw(that.$$screen, that.$$camera);
+                gameObject.components.each(function(component) {
+                    component.draw(that.$$screen, that.$$camera);
+                });
+            });
         };
         
         CanvasRenderer.prototype.drawGUI = function() {
