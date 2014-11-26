@@ -29,12 +29,16 @@
         GameLoop.extend(EventSet);
         
         GameLoop.prototype.start = function() {
-            if(!this.$$clock.isRunning()) {
-                this.$$lastTime = Date.now();
-                this.$$clock.off('tick').on('tick', this.loop.bind(this)).start();
+            var that = this;
+            
+            if(!that.$$clock.isRunning()) {
+                that.$$lastTime = Date.now();
+                that.$$clock.off('tick').on('tick', function(iterations, now) {
+                    that.loop(iterations, now);
+                }).start();
             }
             
-            return this;
+            return that;
         };
         
         GameLoop.prototype.loop = function(iterations, now) {
