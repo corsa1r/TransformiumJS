@@ -12,9 +12,8 @@
     deps.push('src/engine/Class');
     deps.push('src/engine/events/EventSet');
     deps.push('src/engine/time/Interval');
-    deps.push('src/engine/utils/ReverseCallback');
     
-    define(deps, function(Class, EventSet, Interval, ReverseCallback) {
+    define(deps, function(Class, EventSet, Interval) {
         
         var GameLoop = new Class('GameLoop', function(fps) {
             GameLoop.super.constructor.call(this);
