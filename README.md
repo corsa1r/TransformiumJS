@@ -31,6 +31,17 @@ keyboard.is.on(Output.EVENT_NAME, function(event) {
 
 6) GameObjects
 
+```js
+    var gameLoop = new GameLoop();
+    var player = new GameObject();
+    
+    gameLoop.on('update', function(delta) {
+        player.update(delta);
+    });
+    
+    gameLoop.start();
+```
+
     a) Components system 
         - Just attach RigidBody and physics engine will automaticly simulate it.
   
