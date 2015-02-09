@@ -4,6 +4,7 @@ TransformiumJS is a game engine for web.
 Version 0.5 Beta 2
 
 Feauters
+
 1) Modular
 
 2) Multiple input types:
@@ -44,6 +45,13 @@ keyboard.is.on(Output.EVENT_NAME, function(event) {
 
     a) Components system 
         - Just attach RigidBody and physics engine will automaticly simulate it.
+```js
+    
+    //Create rigid body component as a cube
+    var cubeBody = new RigidBody('rectangle', x, y, width, height, options);
+    //Attach it to player
+    player.components.attach(cubeBody);
+```
   
 7) Phonegap and Icenium implementation is on progress.
 
