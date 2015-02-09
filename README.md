@@ -4,22 +4,15 @@ TransformiumJS is a game engine for web.
 Version 0.5 Beta 2
 
 Feauters
-
 1) Modular
-
 2) Multiple input types:
-
     a) Keyboard
     b) Mouse
     c) Touch
     d) Joystic is not implemented yet. 
-  
 3) Event system
-
 4) Physics engine (thanks to MatterJS - http://brm.io/matter-js/)
-
 5) Storage container system
-
 6) GameObjects
 
     a) Components system 
