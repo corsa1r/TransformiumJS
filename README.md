@@ -1,4 +1,4 @@
-TransformiumJS is a game engine for web.
+TransformiumJS
 =================================================================
 
 Version 0.5 Beta 2
@@ -47,6 +47,23 @@ keyboard.is.on(Output.EVENT_NAME, function(event) {
         player.commandsQueue.add('JUMP');//Add command to the queue.
     }
 });
+
+player.update = function(delta) {
+    
+    if(this.commandsQueue.len()) {//Has commands in the queue
+        var command = this.commandsQueue.first();
+        
+        switch(command) {
+            case 'JUMP' :
+            this.applyForce({x: 0, y: -5}); // Apply force
+            this.commandsQueue.remove(command); //Remove the processed command
+            break;
+        }
+        
+        //etc...
+    }
+    
+}
 ```
 
 a) Components system 
