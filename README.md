@@ -22,19 +22,14 @@ Feauters
 
 6) GameObjects
 
-  a) Components system (e.x. Just attach RigidBody component and physics engine will automaticly simulate it)
+    a) Components system (e.x. Just attach RigidBody component and physics engine will automaticly simulate it)
   
 7) Phonegap and Icenium implementation is on progress.
 
-  - Feautered classes
-  - 
-  a) Gyroscope events
-
-  b) Accelerometer events
-  
-  c) Vibration controller
-  
+    - Feautered classes
+    a) Gyroscope events
+    b) Accelerometer events
+    c) Vibration controller
     and more..
     
 8) Rendering system is on progress.
-
