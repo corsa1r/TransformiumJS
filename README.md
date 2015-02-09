@@ -1,7 +1,7 @@
 TransformiumJS
 =================================================================
 
-Version 0.5 Beta 2
+Version 0.5 Beta 2 - demo http://sourcehint.com/Physics/
 
 Feauters
 
