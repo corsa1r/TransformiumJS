@@ -9,13 +9,10 @@ Feauters
 
 2) Multiple input types:
 
-  a) Keyboard
-  
-  b) Mouse
-  
-  c) Touch
-  
-  d) Joystic is not implemented yet. 
+    a) Keyboard
+    b) Mouse
+    c) Touch
+    d) Joystic is not implemented yet. 
   
 3) Event system
 
