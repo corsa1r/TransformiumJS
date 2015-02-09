@@ -55,9 +55,10 @@ player.update = function(delta) {
         
         switch(command) {
             case 'JUMP' :
-            this.applyForce({x: 0, y: -5}); // Apply force
-            this.commandsQueue.remove(command); //Remove the processed command
-            break;
+                var force = {x : 0, y : -5 * delta};
+                this.applyForce(force); // Apply force
+                this.commandsQueue.remove(command); //Remove the processed command
+                break;
         }
         
         //etc...
