@@ -42,9 +42,9 @@ keyboard.is.on(Output.EVENT_NAME, function(event) {
     
     gameLoop.start();
 ```
-
-    a) Components system 
-        - Just attach RigidBody and physics engine will automaticly simulate it.
+a) Components system 
+    - Just attach RigidBody and physics engine will automaticly simulate it.
+    
 ```js
     
     //Create rigid body component as a cube
