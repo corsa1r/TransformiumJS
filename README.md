@@ -15,7 +15,7 @@ Feauters
   
   c) Touch
   
-  d) Joystic is not implemented yet.
+  d) Joystic is not implemented yet. 
   
 3) Event system
 
