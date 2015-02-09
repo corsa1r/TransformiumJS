@@ -1,4 +1,5 @@
 TransformiumJS
-==============
 
-CORSAIR's Game engine
+This is game engine for web.
+
+Feauters
