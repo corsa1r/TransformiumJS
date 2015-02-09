@@ -15,7 +15,7 @@ Feauters
     
 3) Event system
     
-    [code]
+    ```js
     var keyboard = new Keyboard();
     
     keyboard.is.on(Output.EVENT_NAME, function(event) {
@@ -23,7 +23,7 @@ Feauters
             //Player.jump();
         }
     });
-    [/code]
+    ```
 
 4) Physics engine (thanks to MatterJS - http://brm.io/matter-js/)
 
