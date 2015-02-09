@@ -14,23 +14,7 @@ Feauters
     c) Touch
     d) Joystic is not implemented yet. 
     
-3) Event system
-    
-```js
-var keyboard = new Keyboard();
-
-keyboard.is.on(Output.EVENT_NAME, function(event) {
-    if(event.which === 'SPACE' && event.state === false) {
-        //Player.jump();
-    }
-});
-```
-
-4) Physics engine (thanks to MatterJS - http://brm.io/matter-js/)
-
-5) Storage container system
-
-6) GameObjects
+3) GameObjects
 
 ```js
     var gameLoop = new GameLoop();
@@ -42,6 +26,23 @@ keyboard.is.on(Output.EVENT_NAME, function(event) {
     
     gameLoop.start();
 ```
+
+4) Physics engine (thanks to MatterJS - http://brm.io/matter-js/)
+
+5) Storage container system
+
+6) Event system
+    
+```js
+var keyboard = new Keyboard();
+
+keyboard.is.on(Output.EVENT_NAME, function(event) {
+    if(event.which === 'SPACE' && event.state === false) {
+        //Player.jump();
+    }
+});
+```
+
 a) Components system 
     - Just attach RigidBody and physics engine will automaticly simulate it.
     
