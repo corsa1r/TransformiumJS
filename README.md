@@ -31,14 +31,20 @@ Feauters
 
 5) Storage container system
 
+```js
+    //Add commads queue to the player gameObject
+    player.commandsQueue = new Container();
+```
+
 6) Event system
     
 ```js
 var keyboard = new Keyboard();
 
+//Handle keyboard events
 keyboard.is.on(Output.EVENT_NAME, function(event) {
     if(event.which === 'SPACE' && event.state === false) {
-        //Player.jump();
+        player.commandsQueue.add('JUMP');//Add command to the queue.
     }
 });
 ```
