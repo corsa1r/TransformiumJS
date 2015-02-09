@@ -15,7 +15,7 @@ Feauters
     
 3) Event system
     
-    ```js
+    ```
     var keyboard = new Keyboard();
     
     keyboard.is.on(Output.EVENT_NAME, function(event) {
