@@ -44,27 +44,45 @@ var keyboard = new Keyboard();
 //Handle keyboard events
 keyboard.is.on(Output.EVENT_NAME, function(event) {
     if(event.which === 'SPACE' && event.state === false) {
-        player.commandsQueue.add('JUMP');//Add command to the queue.
+        
+        //Create a new player command
+        var command = {
+            name  : 'JUMP',
+            state : event.state,
+            time  : event.time
+        };
+        
+        //Add command to the queue.
+        player.commandsQueue.add(command);
     }
 });
 
+player.command = function(command, delta) {
+    switch(command.name) {
+        case 'JUMP' : {
+        
+            //Define force
+            var force = {x : 0, y : -5 * delta};
+            //Apply it
+            this.components.get('RigidBody').applyForce(force);
+            
+            break;
+        }
+    }
+};
+
 player.update = function(delta) {
     
-    if(this.commandsQueue.len()) {//Has commands in the queue
+    while(this.commandsQueue.len()) {
+        //Get first command from the queue
         var command = this.commandsQueue.first();
-        
-        switch(command) {
-            case 'JUMP' :
-                var force = {x : 0, y : -5 * delta};
-                this.applyForce(force); // Apply force
-                this.commandsQueue.remove(command); //Remove the processed command
-                break;
-        }
-        
-        //etc...
+        //Process the command
+        this.command(command, delta);
+        //Remove command from the queue
+        this.commandsQueue.remove(command);
     }
     
-}
+};
 ```
 
 a) Components system 
