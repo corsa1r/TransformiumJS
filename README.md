@@ -36,7 +36,19 @@ Feauters
     player.commandsQueue = new Container();
 ```
 
-6) Event system
+
+6) Components system 
+    - Just attach RigidBody and physics engine will automaticly simulate it.
+    
+```js
+    
+    //Create rigid body component as a cube
+    var cubeBody = new RigidBody('rectangle', x, y, width, height, options);
+    //Attach it to player
+    player.components.attach(cubeBody);
+```
+
+7) Event system
     
 ```js
 var keyboard = new Keyboard();
@@ -84,19 +96,8 @@ player.update = function(delta) {
     
 };
 ```
-
-a) Components system 
-    - Just attach RigidBody and physics engine will automaticly simulate it.
-    
-```js
-    
-    //Create rigid body component as a cube
-    var cubeBody = new RigidBody('rectangle', x, y, width, height, options);
-    //Attach it to player
-    player.components.attach(cubeBody);
-```
   
-7) Phonegap and Icenium implementation is on progress.
+8) Phonegap and Icenium implementation is on progress.
 
     - Feautered classes
     a) Gyroscope events
@@ -104,4 +105,4 @@ a) Components system
     c) Vibration controller
     and more..
     
-8) Rendering system is on progress.
+9) Rendering system is on progress.
