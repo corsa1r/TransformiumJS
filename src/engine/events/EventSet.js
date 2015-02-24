@@ -3,6 +3,7 @@
 * @description this class implements simple event mechanism
 * @author CORSAIR <vladimir.corsair@gmail.com>
 * @requires Container class - EventSet depends/inherit the Container to store names and callbacks of the events.
+* 	- https://github.com/corsa1r/TransformiumJS/blob/master/src/engine/storage/Container.js
 * @version 21.11.2014
 */
 
